@@ -1,0 +1,6 @@
+# .gitignore
+/node_modules/
+/api/node_modules/
+/recommendation-service/vendor/
+*.log
+*.env
