@@ -20,6 +20,7 @@ graph LR
     NodejsAPI --> ServiceB
     NodejsAPI --> ServiceC
     NodejsAPI --> PostgreSQL
+    NodejsAPI --> NodejsCache
   end
 
   subgraph Services
@@ -29,11 +30,18 @@ graph LR
   end
 
   ServiceB --> MongoDB
+  ServiceB --> ServiceBCache
+
+  subgraph Caching
+    NodejsCache[Node.js API Cache]
+    ServiceBCache[Service B Cache]
+  end
 
   subgraph Databases
     PostgreSQL[PostgreSQL RDS]
     MongoDB
   end
+
 
 
 ```
