@@ -1,0 +1,38 @@
+# .github/workflows/recommendation-service.yml
+
+name: Go Recommendation Service
+
+on:
+  push:
+    paths:
+      - 'recommendation-service/**'
+  pull_request:
+    paths:
+      - 'recommendation-service/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: recommendation-service
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Setup Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.17 # or the desired Go version
+
+    - name: Install dependencies
+      run: go mod download
+
+    - name: Run tests
+      run: go test ./...
+
+    - name: Build
+      run: go build -o recommendation-service
+
+    # Add any additional steps required for deployment, e.g., pushing Docker images, deploying to AWS, etc.
